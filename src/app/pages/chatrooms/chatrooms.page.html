@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button text="Chat Rooms" defaultHref="/tabs/(events:event-list)"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{($eventItem | async)?.name}}</ion-title>
+
+    <ion-buttons slot="end">
+      <!-- <ion-button (click)="moreItems()">
+        <ion-icon name="more"></ion-icon>
+      </ion-button> -->
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list lines="none">
+    <ion-list-header>
+      <ion-label>Select a chat room</ion-label>
+    </ion-list-header>
+    
+    <ion-item button detail lines="inset" *ngFor="let room of rooms" (click)="joinRoom(room.key, room.roomname)">
+      <ion-icon slot="start" color="medium" name="chatboxes"></ion-icon>
+      <ion-label class="ion-text-wrap">
+        <h2>{{room.roomname}}</h2>
+        <p>{{room.roomtitle}}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>  
+</ion-content>
+
+<!-- <ion-content class="ion-padding">
+  <ion-list>
+    <ion-item *ngFor="let room of rooms">
+      {{room.roomname}}
+      <ion-icon name="chatboxes" item-end (click)="joinRoom(room.key)"></ion-icon>
+    </ion-item>
+  </ion-list>
+</ion-content> -->

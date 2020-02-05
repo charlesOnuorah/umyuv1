@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DebuggerFlavor>AppHostLocalDebugger</DebuggerFlavor>
+    <WindowsPhoneEmulatorID>AC47FD61-CB87-436C-9D4E-ACC30B549710;Mobile Emulator 10.0.15254.0 WVGA 4 inch 1GB</WindowsPhoneEmulatorID>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
+    <DebuggerFlavor>AppHostSimulatorDebugger</DebuggerFlavor>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SplashScreenSource>C:\UMYUApp\resources\icon.png</SplashScreenSource>
+    <AppIconSource>C:\UMYUApp\resources\icon.png</AppIconSource>
+    <BadgeLogoSource>C:\UMYUApp\resources\splash.png</BadgeLogoSource>
+    <PackageLogoSource>C:\UMYUApp\resources\icon.png</PackageLogoSource>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <DebuggerFlavor>AppHostSimulatorDebugger</DebuggerFlavor>
+    <WindowsPhoneEmulatorID>362F2FFC-8775-4C87-A784-13CE2DCF05C4;Mobile Emulator 10.0.15254.0 QHD 5.2 inch 3GB</WindowsPhoneEmulatorID>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)|$(UseDotNetNativeToolchain)'=='Release|x86|true'">
+    <DebuggerFlavor>AppHostSimulatorDebugger</DebuggerFlavor>
+  </PropertyGroup>
+</Project>

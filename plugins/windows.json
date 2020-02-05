@@ -1,0 +1,100 @@
+{
+  "prepare_queue": {
+    "installed": [],
+    "uninstalled": []
+  },
+  "config_munge": {
+    "files": {}
+  },
+  "installed_plugins": {
+    "cordova-plugin-whitelist": {
+      "PACKAGE_NAME": "MyApp"
+    },
+    "cordova-plugin-statusbar": {
+      "PACKAGE_NAME": "MyApp"
+    },
+    "cordova-plugin-device": {
+      "PACKAGE_NAME": "MyApp"
+    },
+    "cordova-plugin-splashscreen": {
+      "PACKAGE_NAME": "MyApp"
+    },
+    "cordova-plugin-ionic-webview": {
+      "PACKAGE_NAME": "MyApp"
+    },
+    "cordova-plugin-ionic-keyboard": {
+      "PACKAGE_NAME": "MyApp"
+    },
+    "cordova-plugin-file": {
+      "PACKAGE_NAME": "MyApp"
+    },
+    "cordova-plugin-file-opener2": {
+      "PACKAGE_NAME": "MyApp"
+    },
+    "cordova-plugin-file-transfer": {
+      "PACKAGE_NAME": "MyApp"
+    },
+    "cordova-plugin-document-viewer": {
+      "PACKAGE_NAME": "MyApp"
+    },
+    "cordova-android-support-gradle-release": {
+      "PACKAGE_NAME": "MyApp"
+    },
+    "cordova-plugin-androidx": {
+      "PACKAGE_NAME": "MyApp"
+    },
+    "cordova-plugin-androidx-adapter": {
+      "PACKAGE_NAME": "MyApp"
+    },
+    "cordova-plugin-advanced-http": {
+      "PACKAGE_NAME": "MyApp"
+    },
+    "cordova-open-native-settings": {
+      "PACKAGE_NAME": "MyApp"
+    },
+    "cordova.plugins.diagnostic": {
+      "PACKAGE_NAME": "MyApp"
+    },
+    "cordova-plugin-android-permissions": {
+      "PACKAGE_NAME": "MyApp"
+    },
+    "cordova-plugin-inappbrowser": {
+      "PACKAGE_NAME": "MyApp"
+    },
+    "cordova-plugin-native-spinner": {
+      "PACKAGE_NAME": "MyApp"
+    },
+    "cordova-plugin-x-toast": {
+      "PACKAGE_NAME": "MyApp"
+    },
+    "cordova-plugin-themeablebrowser": {
+      "PACKAGE_NAME": "MyApp"
+    },
+    "com.moust.cordova.videoplayer": {
+      "PACKAGE_NAME": "MyApp"
+    },
+    "cordova-plugin-media": {
+      "PACKAGE_NAME": "MyApp"
+    },
+    "cordova-plugin-httpd": {
+      "PACKAGE_NAME": "MyApp"
+    },
+    "cordova-plugin-nativestorage": {
+      "PACKAGE_NAME": "MyApp"
+    },
+    "cordova-plugin-screen-orientation": {
+      "PACKAGE_NAME": "MyApp"
+    },
+    "cordova-plugin-app-name": {
+      "APP_NAME": "UMYU Mobile Learning Platform",
+      "PACKAGE_NAME": "UMYUApp"
+    },
+    "cordova-safe": {
+      "PACKAGE_NAME": "UMYUApp"
+    },
+    "com-badrit-base64": {
+      "PACKAGE_NAME": "UMYUApp"
+    }
+  },
+  "dependent_plugins": {}
+}

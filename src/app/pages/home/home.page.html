@@ -1,0 +1,57 @@
+<ion-header>
+  <ion-toolbar color='primary'>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Home</ion-title>
+    
+    <ion-buttons slot="end">
+      <!-- <ion-button (click)="settingPopover()">
+        <ion-icon name="more"></ion-icon>
+      </ion-button> -->
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card class="welcome-card">
+    <img src="assets/banners/banner21.jpg" alt="" />
+    <ion-card-header>
+      <ion-card-title>Welcome to Umaru Musa Yar'Adua University</ion-card-title>
+      <ion-card-subtitle>Mobile Learnng Platform</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      <p>Learning just got better, download all the courses you are interested in and start learning at your own pace. Click <strong>Browse Resources</strong> to get started.</p>
+    </ion-card-content>
+  </ion-card>
+  <ion-list lines="none">
+    <ion-list-header>
+      <ion-label>What Next</ion-label>
+    </ion-list-header>
+    <ion-item class="hover-item" (click)="navigateToEditProfilePage()" [routerLink]="['/', 'edit']">
+      <ion-icon slot="start" color="medium" name="person"></ion-icon>
+      <ion-label>Edit Profile</ion-label>
+    </ion-item>
+    <ion-item class="hover-item" (click)="verifySetup()">
+      <ion-icon slot="start" color="medium" name="book"></ion-icon>
+      <ion-label>Browse Resources</ion-label>
+    </ion-item>
+    <ion-item [routerLink]="['/', 'favorites']">
+      <ion-icon slot="start" color="medium" name="star"></ion-icon>
+      <ion-label>Favorite Courses</ion-label>
+    </ion-item>
+    <ion-item [routerLink]="['/', 'chatrooms']">
+      <ion-icon slot="start" color="medium" name="chatboxes"></ion-icon>
+      <ion-label>Enter Chat Room</ion-label>
+    </ion-item>
+    <ion-item [routerLink]="['/', 'bulkdownload']">
+      <ion-icon slot="start" color="medium" name="cloud-download"></ion-icon>
+      <ion-label>Download Manager</ion-label>
+    </ion-item>
+    <ion-item class="hover-item" (click)="presentAlertConfirm()">
+      <ion-icon slot="start" color="medium" name="construct"></ion-icon>
+      <ion-label>Reset Parameters</ion-label>
+    </ion-item>
+    
+  </ion-list>
+</ion-content>

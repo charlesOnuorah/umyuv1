@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button text="Levels" defaultHref="/tabs/(events:event-list)"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{($eventItem | async)?.name}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card class="welcome-card">
+    <img src="assets/banners/banner21.jpg" alt="" />
+    <ion-card-header>
+      <ion-card-title>Departmental Levels</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p>Select your level to display list of courses available for the selected level</p>
+    </ion-card-content>
+  </ion-card>
+  <ion-list lines="none">
+    <ion-list-header>
+      <ion-label>Select Your Level</ion-label>
+    </ion-list-header>
+    <ion-item button detail lines="inset" (click)="setupLevelID(level.id)" *ngFor="let level of levels" [routerLink]="['/', 'courses', departmentid, level.id]">
+      <ion-icon slot="start" color="medium" name="stats"></ion-icon>
+      <ion-label class="ion-text-wrap">
+        <h3>{{ level.name }}</h3>
+      </ion-label>  
+    </ion-item>
+  </ion-list>
+</ion-content>

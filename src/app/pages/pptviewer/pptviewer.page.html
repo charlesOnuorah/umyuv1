@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button text="{{ courseCode }} - PPT" defaultHref="/tabs/(events:event-list)"></ion-back-button>
+    </ion-buttons>
+    <!-- <ion-title>{{($eventItem | async)?.name}}</ion-title> -->
+    
+    <ion-buttons slot="end">
+      <ion-button style="font-size: 12px;" (click)="actionFavoriteCourses(actionFavType)" icon-end>
+        <ion-icon name="{{ actionFavType === 'Remov' ? 'remove-circle-outline' : 'add-circle-outline' }}" color="light"></ion-icon>
+        <span style="padding-right: 5px; padding-left: 5px;">Favorite</span>
+        <!-- <ion-icon name="star" color="light"></ion-icon> -->
+      </ion-button>
+      <ion-button style="font-size: 12px;" (click)="downloadMedia()" icon-end>
+        <span style="padding-right: 5px;">Update</span>
+        <ion-icon name="cloud-download" color="light"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen="true" style="background-color:#646464;">
+  <ngx-doc-viewer [url]="pptSrc" viewer="google" style="width:100%;height:100%;"></ngx-doc-viewer>
+
+  <!-- <pdf-viewer 
+    [src]="pptSrc"
+    [zoom]="zoomType == 'custom' ? zoomValue : zoomType"
+    [(page)]="page"
+    [show-all]="true"
+    (after-load-complete)="onLoadComplete($event)"
+    [show-borders]="true" 
+    [stick-to-page]="true"
+    color="medium">
+  </pdf-viewer> -->
+  <!-- <ion-toolbar color="dark">
+    <ion-button color="light" fill="clear" expand="full" (click)="enterChatRooms()">{{ createRoomCaption }}</ion-button>
+  </ion-toolbar> -->
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar color="dark">
+    <ion-button color="light" fill="clear" expand="full" (click)="enterChatRooms()">{{ createRoomCaption }}</ion-button>
+  </ion-toolbar>
+</ion-footer>

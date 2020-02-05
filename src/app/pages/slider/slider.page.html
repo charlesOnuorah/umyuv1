@@ -1,0 +1,41 @@
+<ion-content class="slider-page manual-remove-top-padding" scroll="false">
+  <ion-slides #gfslider pager [options]="options" style="width:100%;height:100%;">
+    <ion-slide id="slider-slide27" style="background-color:#fff;">
+      <div style="display:table;width:100%;height:100%;">
+        <div style="display:table-row;">
+          <div style="display:table-cell;vertical-align:middle;">
+            <div>
+              <img src="assets/slides/logo.jpeg" style="display: block; width: 50%; height: auto; margin-left: auto; margin-right: auto;">
+            </div>
+            <div class="spacer" style="height: 20px;"></div>
+            <h2 id="slider-heading2" style="padding-left: 30px; padding-right: 30px;">Welcome to Umaru Musa Yar'Adua University</h2>
+            <div class="spacer" style="height: 20px;"></div>
+            <h5>Mobile Learnng Platform</h5>
+          </div>
+        </div>
+      </div>
+    </ion-slide>
+
+    <ion-slide style="background-color:#fff;" *ngFor="let slide of slidess">      
+      <div style="display:table;width:100%;height:100%;">
+        <div style="display:table-row;">
+          <div style="display:table-cell;vertical-align:middle;">
+            <div>
+              <img [src]="slide.image" style="display: block; width: 40%; height: auto; margin-left: auto; margin-right: auto;">
+              <!-- <img [src]="slide.image" class="slide-image"> -->
+            </div>
+            <div class="spacer" style="height: 20px;"></div>
+            <h2 id="slider-heading4" [innerHTML]="slide.title" style="padding-left: 30px; padding-right: 30px;"></h2>
+            <p [innerHTML]="slide.description" style="padding-left: 30px; padding-right: 30px;"></p>
+          </div>
+        </div>
+      </div>
+    </ion-slide>
+  </ion-slides>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-button expand="full" fill="clear" (click)="skipSlides()">Skip <ion-icon slot="end" name="arrow-forward"></ion-icon></ion-button>
+  </ion-toolbar>
+</ion-footer>

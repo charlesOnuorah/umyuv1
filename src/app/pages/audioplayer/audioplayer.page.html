@@ -1,0 +1,118 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button text="{{ courseCode }} - MP3" defaultHref="/tabs/(events:event-list)"></ion-back-button>
+    </ion-buttons>
+    <!-- <ion-title>{{($eventItem | async)?.name}}</ion-title> -->
+    
+    <ion-buttons slot="end">
+      <ion-button style="font-size: 12px;" (click)="actionFavoriteCourses(actionFavType)" icon-end>
+        <ion-icon name="{{ actionFavType === 'Remov' ? 'remove-circle-outline' : 'add-circle-outline' }}" color="light"></ion-icon>
+        <span style="padding-right: 5px; padding-left: 5px;">Favorite</span>
+        <!-- <ion-icon name="star" color="light"></ion-icon> -->
+      </ion-button>
+      <ion-button style="font-size: 12px;" (click)="downloadMedia()" icon-end>
+        <span style="padding-right: 5px;">Update</span>
+        <ion-icon name="cloud-download" color="light"></ion-icon>
+      </ion-button>
+      <!-- <ion-button style="font-size: 12px;" (click)="verifyMediaDownload()" icon-end>
+        <span style="padding-right: 5px;">Daonload All</span>
+        <ion-icon name="cloud-download" color="light" style="padding-right: 5px; padding-left: 5px;"></ion-icon>
+      </ion-button> -->
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card class="welcome-card">
+    <div class="fixedContent">
+      <ion-card-content class="ion-align-items-center rowSection" style="background-color: black; position: relative;top:0;left:0;width:100%;height:100%;">
+        <ion-thumbnail style="top:0;left:0;width:100%;height:160px;" [ngStyle]="{'background':'url('+ image +')'}"></ion-thumbnail>
+        <audio type="audio/mpeg" style="top:0;left:0;width:100%;" controls controlsList="nodownload">
+          <source src="" type="audio/mp3">
+        </audio>
+      </ion-card-content>
+    </div>
+  </ion-card>
+
+  <div class="padding_Top">
+    <div class="fixedContent">
+      <!-- <ion-text color="light">{{ courseCode }}</ion-text>
+      <p text-uppercase color="light" class="pUser microsoft marquee11 ">{{ courseTitle }}</p> -->
+      
+      <h3 style="font-size: 28px; color: #f4f5f8 !important; margin-bottom: 0px;" color="light">{{ courseCode }}</h3>
+      <h4 style="font-size: 18px; color: #f4f5f8 !important;" color="light">{{ courseTitle }}</h4>
+
+      <p style="font-size: 14px; padding-left: 20px; padding-right: 20px; text-align: center; line-height: 1.5em;" color="light" class="pUser microsoft">Tap the play button to start listening to <strong>{{ courseTitle }}</strong> audio course. Click the <strong>UPDATE</strong> button at the top right corner to update this course</p>
+    </div>
+    <!-- <ion-range min="0" max="{{duration}}" [(ngModel)]="position" color="light">
+    </ion-range>
+    <div class="rangePlaytime">
+      <ion-label class="startTime" color="light">{{ display_position }}</ion-label>
+      <ion-label class="endTime" color="light" *ngIf="duration == -1">--:--</ion-label>
+      <ion-label class="endTime" color="light" *ngIf="duration != -1">{{ display_duration }}</ion-label>
+    </div> -->
+  </div>
+
+  <!-- <ion-grid>
+    <ion-row justify-content-center align-items-center style="height: 100%">
+      <ion-col>
+        <div class="flexRow">
+          <div>
+            <ion-button fill="clear" color="light">
+              <ion-icon name="heart-empty" class="Iconsize_For_Rev"></ion-icon>
+            </ion-button>
+          </div>
+
+          <div>
+            <ion-button fill="clear" color="light" (click)="controlSeconds('back')">
+              <ion-icon name="rewind"></ion-icon>
+            </ion-button>
+          </div>
+
+          <div>
+            <ion-button class="play_pause_btn" (click)="play()" color="light" *ngIf="!is_playing" justify-content-center
+              [disabled]="!is_ready" align-items-center>
+              <ion-icon name="play" class="darkColor"></ion-icon>
+            </ion-button>
+
+            <ion-button class="play_pause_btn" (click)="pause()" color="light" *ngIf="is_playing" justify-content-center
+              [disabled]="!is_ready" align-items-center>
+              <ion-icon name="pause" class="darkColor"></ion-icon>
+            </ion-button>
+          </div>
+
+          <div>
+            <ion-button fill="clear" color="light" (click)="controlSeconds('forward')">
+              <ion-icon name="fastforward" class="Iconsize_For_Rev"></ion-icon>
+            </ion-button>
+          </div>
+
+          <div>
+            <ion-button fill="clear" color="light">
+              <ion-icon name="remove-circle-outline" class="Iconsize_For_Rev"></ion-icon>
+            </ion-button>
+          </div>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item lines="none" class="transparent_Item">
+          <ion-button slot="start" fill="clear" color="light">
+            <ion-icon name="flash" expand="icon-only" class="Iconsize_For_Rev"></ion-icon>
+          </ion-button>
+          <ion-button slot="end" fill="clear" color="light">
+            <ion-icon name="share" expand="icon-only" class="Iconsize_For_Rev"></ion-icon>
+          </ion-button>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid> -->
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar color="dark">
+    <ion-button color="light" fill="clear" expand="full" (click)="enterChatRooms()">{{ createRoomCaption }}</ion-button>
+  </ion-toolbar>
+</ion-footer>

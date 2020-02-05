@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-toolbar color='primary'>
+    <!-- <ion-title>editprofile</ion-title> -->
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/(events:event-list)"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Edit Profile</ion-title>
+    <!-- <ion-title>{{($eventItem | async)?.name}}</ion-title> -->
+  </ion-toolbar>
+
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="profileForm" (ngSubmit)="onSubmit(profileForm.value)">
+    <ion-card class="welcome-card">
+      <ion-card-header>
+        <ion-card-title>Profile</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-item>
+          <ion-label position="floating">First Name</ion-label>
+          <ion-input type="text" name="firstName" [value]="user?.firstName" formControlName="firstName"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Last Name</ion-label>
+          <ion-input type="text" name="lastName" [value] = "user?.lastName" formControlName="lastName"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Email Address</ion-label>
+          <ion-input type="email" name="email" [value]="user?.email" formControlName="email"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Phone Number</ion-label>
+          <ion-input type="text" name="phoneNumber" [value]="user?.phoneNumber" formControlName="phoneNumber"></ion-input>
+        </ion-item>
+        <ion-item lines="none" class="ion-padding-top">
+          <ion-button type="submit" [disabled]="!profileForm.valid" color="primary">Update Profile</ion-button>
+          <!-- <ion-button expand="block" size="large" shape="round" color="primary" type="submit" [disabled]="!registerForm.valid">Register</ion-button> -->
+        </ion-item>
+      </ion-card-content>
+    </ion-card>
+  </form>
+</ion-content>

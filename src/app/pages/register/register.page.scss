@@ -1,0 +1,14 @@
+.welcome-card img {
+  max-height: 35vh;
+  overflow: hidden;
+}
+      
+.sc-ion-card-md-h,
+.sc-ion-card-ios-h {
+  display: unset;
+}
+    
+.sc-ion-card-md-s img,
+.sc-ion-card-ios-s img {
+  margin-top: -18px;
+}

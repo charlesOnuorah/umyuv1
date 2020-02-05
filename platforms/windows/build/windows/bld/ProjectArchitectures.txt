@@ -1,0 +1,1 @@
+C:\UMYUApp\platforms\windows\CordovaApp.Windows10.jsproj;neutral

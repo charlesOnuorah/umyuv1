@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button text="Faculty" defaultHref="/tabs/(events:event-list)"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{($eventItem | async)?.name}}</ion-title>
+    
+    <ion-buttons slot="end">
+      <ion-button style="font-size: 12px;" (click)="refreshFaculty()" icon-end>
+        <span style="padding-right: 5px;">Refresh</span>
+        <ion-icon name="refresh"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card class="welcome-card">
+    <img src="assets/banners/banner31.jpg" alt="" />
+    <ion-card-header>
+      <ion-card-title>Faculties</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p>Select your faculty to display all the departments in the faculty</p>
+    </ion-card-content>
+  </ion-card>
+  <ion-list lines="none">
+    <ion-list-header>
+      <ion-label>Select Your Faculty</ion-label>
+    </ion-list-header>
+    <!-- <ion-item button *ngFor="let faculty of (faculties | async)" [routerLink]="['/', 'faculties', faculty.id]"> -->
+    <ion-item button detail lines="inset" (click)="setupFacultyID(faculty.id)" *ngFor="let faculty of faculties" [routerLink]="['/', 'departments', faculty.id]">          
+      <ion-icon slot="start" color="medium" name="business"></ion-icon>
+      <ion-label class="ion-text-wrap">
+        <h3>{{ faculty.name }}</h3>
+      </ion-label>  
+    </ion-item>
+  </ion-list>
+</ion-content>

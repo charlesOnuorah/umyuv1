@@ -1,0 +1,73 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button *ngIf="mediaType == 1" text="PDF Media" defaultHref="/tabs/(events:event-list)"></ion-back-button>
+      <ion-back-button *ngIf="mediaType == 2" text="Audio Media" defaultHref="/tabs/(events:event-list)"></ion-back-button>
+      <ion-back-button *ngIf="mediaType == 3" text="Video Media" defaultHref="/tabs/(events:event-list)"></ion-back-button>
+      <ion-back-button *ngIf="mediaType == 4" text="Powerpoint Media" defaultHref="/tabs/(events:event-list)"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{($eventItem | async)?.name}}</ion-title>
+    
+    <ion-buttons slot="end">
+      <ion-button *ngIf="mediaType == 1 || mediaType == 4" style="font-size: 12px;" (click)="verifyMedia()" icon-end>
+        <span style="padding-right: 5px;">View</span>
+        <ion-icon name="eye"></ion-icon>
+      </ion-button>
+
+      <ion-button style="font-size: 12px;" (click)="downloadMedia()" icon-end>
+        <span style="padding-right: 5px;">Update</span>
+        <ion-icon name="cloud-download"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+  
+<ion-content>
+  <ion-card class="welcome-card">    
+    <ion-card-content (click)="verifyMedia()" *ngIf="mediaType == 1" class="ion-align-items-center rowSection" style="display:block; width: 100%; border:none; margin:0 auto;">   
+        <img src="assets/imgs/pdf.jpg" style="display:block; width: 100%; border:none; margin:0 auto;" alt="" />
+    </ion-card-content>
+
+    <!-- <ion-card-content *ngIf="mediaType == 2" class="ion-align-items-center rowSection" style="background-color: #ffffff; position: relative; padding-top: 56.25%;"> 
+      <img src="assets/imgs/mp3.jpg" style="display:block; width: 100%; border:none; margin:0 auto;" alt="" />
+      <audio type="audio/mpeg" style="position:absolute;top:0;left:0;width:100%;height:100%;" controls controlsList="nodownload" loop>
+        <source src="" type="audio/mp3">
+      </audio>
+    </ion-card-content>   
+    
+    <ion-card-content *ngIf="mediaType == 3" class="ion-align-items-center rowSection" style="background-color: black; position: relative; padding-top: 56.25%;">     
+      <video controls="controls" preload="metadata" 
+        webkit-playsinline="webkit-playsinline" 
+        class="videoPlayer" style="position:absolute;top:0;left:0;width:100%;height:100%;" 
+        poster="https://peach.blender.org/wp-content/uploads/title_anouncement.jpg?x11217">
+        <source src="" type="video/mp4"/>
+      </video>
+    </ion-card-content> -->
+
+    <ion-card-content (click)="verifyMedia()" *ngIf="mediaType == 4" class="ion-align-items-center rowSection" style="display:block; width: 100%; border:none; margin:0 auto;">   
+        <img src="assets/imgs/ppt.jpg" style="display:block; width: 100%; border:none; margin:0 auto;" alt="" />
+    </ion-card-content>
+
+    <ion-card-header>
+      <ion-card-title>{{ courseCode }}</ion-card-title>
+      <ion-card-subtitle>{{ courseTitle }}</ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+      <p *ngIf="mediaType == 1 || mediaType == 4">Tap the media icon to download file and start learning <strong>{{ courseTitle }}</strong>. Click the <strong>UPDATE</strong> or <strong>VIEW</strong> button at the top right corner to update or launch this course.</p>
+      <!-- <p *ngIf="mediaType == 2 || mediaType == 3">Tap the play button to download file and start learning <strong>{{ courseTitle }}</strong>. Click the <strong>UPDATE</strong> button at the top right corner to download updated version of this course.</p> -->
+    </ion-card-content>
+    
+    <!-- <ion-card-content *ngIf="mediaType == 1 || mediaType == 4">      
+      <ion-item lines="none" class="ion-padding-top">
+        <ion-button expand="block" size="default" shape="round" color="primary" type="submit" (click)="verifyMedia()">Get Started</ion-button>
+      </ion-item>
+    </ion-card-content> -->
+  </ion-card>   
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar color="primary">
+    <ion-button color="light" fill="clear" expand="full" (click)="enterChatRoom()">Enter Chat Room</ion-button>
+  </ion-toolbar>
+</ion-footer>

@@ -1,0 +1,11 @@
+{
+  "background_color": "#FFF",
+  "display": "standalone",
+  "name": "UMYUApp",
+  "short_name": "UMYUApp",
+  "version": "io.ionic.starter",
+  "description": "UMYU Mobile Learning Platform",
+  "author": "Primesoft Technologies Limited",
+  "icons": [],
+  "start_url": "index.html"
+}

@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button text="Create Chat Room" defaultHref="/tabs/(events:event-list)"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{($eventItem | async)?.name}}</ion-title>
+    
+    <ion-buttons slot="end">
+      <!-- <ion-button (click)="moreItems()">
+        <ion-icon name="more"></ion-icon>
+      </ion-button> -->
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card class="welcome-card">
+    <img src="assets/banners/banner41.jpg" alt="" />
+    <ion-card-header>
+      <ion-card-title>{{ courseCode }}</ion-card-title>
+      <ion-card-subtitle>{{ courseTitle }}</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      <p><strong> {{ courseTitle }} </strong> chat room does not yet exist, click the button below to create this chat room and be the first to start a chat.</p>
+    </ion-card-content>
+
+    <!-- <ion-card-content *ngIf="mediaType == 1 || mediaType == 4" >
+      <iframe [src]="mediaURL" style="width:100%; height: 1100px;"></iframe>
+    </ion-card-content> -->
+
+  </ion-card>   
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar color="primary">
+    <ion-button color="light" fill="clear" expand="full" (click)="createChatRoom()">Create Chat Room</ion-button>
+  </ion-toolbar>
+</ion-footer>
