@@ -10,15 +10,10 @@ import { NativeStorage } from '@ionic-native/native-storage/ngx';
 })
 export class ChatRoomsPage implements OnInit {
   rooms = [];
-  ref = firebase.database().ref('chatrooms/');
+  ref = firebase.firestore().collection('chatrooms');
   username: string;
 
-  constructor(private router: Router, private nativeStorage: NativeStorage) {
-    this.ref.on('value', resp => {
-      this.rooms = [];
-      this.rooms = snapshotToArray(resp);
-    });
-  }
+  constructor(private router: Router, private nativeStorage: NativeStorage) {}
 
   ngOnInit() {
     // Get user credentials if user has already login
@@ -27,12 +22,34 @@ export class ChatRoomsPage implements OnInit {
         this.username = usercredentials.User.username;
         if (this.username === undefined || this.username.length == 0) {
           this.router.navigate(['register']);
+          // this.getChatroom()
         }
+        this.getChatroom()
        },
       error => {
-        // this.router.navigateByUrl('/register');
+        // this.getChatroom()
+        this.router.navigateByUrl('/register');
       }
     );
+  }
+
+  async getChatroom(){
+    this.ref.onSnapshot( docSnapshot => {
+      let data = [];
+     if(docSnapshot.empty){
+       data = []
+     }else{
+       docSnapshot.forEach(doc => {
+         data.push({
+           key: doc.id,
+           ...doc.data()
+         })
+       })
+       
+     }
+     this.rooms = data;
+     // this.rooms = snapshotToArray(resp);
+   });
   }
 
   joinRoom(key, roomname) {

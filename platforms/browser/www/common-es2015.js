@@ -776,71 +776,55 @@ const findCheckedOption = (el, tagName) => {
 
 /***/ }),
 
-/***/ "./node_modules/Firebase/app/index.js":
-/*!********************************************!*\
-  !*** ./node_modules/Firebase/app/index.js ***!
-  \********************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-/**
- * Copyright 2017 Google Inc.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *   http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
-__webpack_require__(/*! @firebase/polyfill */ "./node_modules/@firebase/polyfill/dist/esm/index.js");
-module.exports = __webpack_require__(/*! @firebase/app */ "./node_modules/@firebase/app/dist/esm/index.js").default;
-
-
-/***/ }),
-
-/***/ "./node_modules/Firebase/auth/index.js":
-/*!*********************************************!*\
-  !*** ./node_modules/Firebase/auth/index.js ***!
-  \*********************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-/**
- * Copyright 2017 Google Inc.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *   http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
-__webpack_require__(/*! @firebase/auth */ "./node_modules/@firebase/auth/dist/auth.js");
-
-
-/***/ }),
-
-/***/ "./node_modules/Firebase/database/index.js":
+/***/ "./node_modules/Firebase/dist/index.cjs.js":
 /*!*************************************************!*\
-  !*** ./node_modules/Firebase/database/index.js ***!
+  !*** ./node_modules/Firebase/dist/index.cjs.js ***!
   \*************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
+"use strict";
+
+
+function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
+
+var firebase = _interopDefault(__webpack_require__(/*! @firebase/app */ "./node_modules/@firebase/app/dist/index.cjs.js"));
+__webpack_require__(/*! @firebase/auth */ "./node_modules/@firebase/auth/dist/auth.esm.js");
+__webpack_require__(/*! @firebase/database */ "./node_modules/@firebase/database/dist/index.cjs.js");
+__webpack_require__(/*! @firebase/firestore */ "./node_modules/@firebase/firestore/dist/index.cjs.js");
+__webpack_require__(/*! @firebase/functions */ "./node_modules/@firebase/functions/dist/index.cjs.js");
+__webpack_require__(/*! @firebase/messaging */ "./node_modules/@firebase/messaging/dist/index.esm.js");
+__webpack_require__(/*! @firebase/storage */ "./node_modules/@firebase/storage/dist/index.esm.js");
+__webpack_require__(/*! @firebase/performance */ "./node_modules/@firebase/performance/dist/index.cjs.js");
+__webpack_require__(/*! @firebase/analytics */ "./node_modules/@firebase/analytics/dist/index.esm.js");
+__webpack_require__(/*! @firebase/remote-config */ "./node_modules/@firebase/remote-config/dist/index.cjs.js");
+
+var name = "firebase";
+var version = "7.8.0";
+
 /**
+ * @license
+ * Copyright 2018 Google Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+firebase.registerVersion(name, version, 'app');
+
+var name$1 = "firebase";
+var version$1 = "7.8.0";
+
+/**
+ * @license
  * Copyright 2017 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -855,98 +839,11 @@ __webpack_require__(/*! @firebase/auth */ "./node_modules/@firebase/auth/dist/au
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-module.exports = __webpack_require__(/*! @firebase/database */ "./node_modules/@firebase/database/dist/cjs/index.js");
-
-
-/***/ }),
-
-/***/ "./node_modules/Firebase/index.js":
-/*!****************************************!*\
-  !*** ./node_modules/Firebase/index.js ***!
-  \****************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-/**
- * Copyright 2017 Google Inc.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *   http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
-var firebase = __webpack_require__(/*! ./app */ "./node_modules/Firebase/app/index.js");
-__webpack_require__(/*! ./auth */ "./node_modules/Firebase/auth/index.js");
-__webpack_require__(/*! ./database */ "./node_modules/Firebase/database/index.js");
-__webpack_require__(/*! ./messaging */ "./node_modules/Firebase/messaging/index.js");
-__webpack_require__(/*! ./storage */ "./node_modules/Firebase/storage/index.js");
+console.warn("\nIt looks like you're using the development build of the Firebase JS SDK.\nWhen deploying Firebase apps to production, it is advisable to only import\nthe individual SDK components you intend to use.\n\nFor the module builds, these are available in the following manner\n(replace <PACKAGE> with the name of a component - i.e. auth, database, etc):\n\nCommonJS Modules:\nconst firebase = require('firebase/app');\nrequire('firebase/<PACKAGE>');\n\nES Modules:\nimport firebase from 'firebase/app';\nimport 'firebase/<PACKAGE>';\n\nTypescript:\nimport * as firebase from 'firebase/app';\nimport 'firebase/<PACKAGE>';\n");
+firebase.registerVersion(name$1, version$1);
 
 module.exports = firebase;
-
-
-/***/ }),
-
-/***/ "./node_modules/Firebase/messaging/index.js":
-/*!**************************************************!*\
-  !*** ./node_modules/Firebase/messaging/index.js ***!
-  \**************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-/**
- * Copyright 2017 Google Inc.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *   http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
-__webpack_require__(/*! @firebase/messaging */ "./node_modules/@firebase/messaging/dist/esm/index.js");
-
-
-/***/ }),
-
-/***/ "./node_modules/Firebase/storage/index.js":
-/*!************************************************!*\
-  !*** ./node_modules/Firebase/storage/index.js ***!
-  \************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-/**
- * Copyright 2017 Google Inc.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *   http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
-__webpack_require__(/*! @firebase/storage */ "./node_modules/@firebase/storage/dist/esm/index.js");
+//# sourceMappingURL=index.cjs.js.map
 
 
 /***/ })

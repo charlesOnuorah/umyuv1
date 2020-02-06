@@ -31,10 +31,16 @@ export class EditprofilePage implements OnInit {
     // this.presentAlert()
     this.nativeStorage.getItem('usercredentials').then(User => {
       this.user.firstName = User.username ? User.username.split(' ')[0] : '';
-      this.user.lastName = User.username ? User.username.split(' ')[1] ? 
+      this.user.lastName = User.username ? User.username.split(' ')[1] ?
         User.username.split(' ')[1] : '' : '';
       this.user.email = User.email;
       this.user.phoneNumber = User.phoneNumber;
+      this.profileForm.setValue({
+        firstName: this.user.firstName,
+        lastName: this.user.firstName,
+        email: this.user.email,
+        phoneNumber: this.user.phoneNumber
+      })
     });
    // const s = JSON.parse(localStorage.getItem('user'));
     // console.log('s', s, this.user)

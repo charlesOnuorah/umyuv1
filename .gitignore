@@ -114,3 +114,8 @@ appv5.apk
 appv6.apk
 www/
 my-release-key.keystore
+appv7.apk
+umyuv7.apk
+my-release-key.jks 
+zipalign
+#umyuappsource

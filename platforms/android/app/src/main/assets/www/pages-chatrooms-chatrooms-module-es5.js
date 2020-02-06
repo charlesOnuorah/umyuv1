@@ -97,15 +97,10 @@ __webpack_require__.r(__webpack_exports__);
 
 var ChatRoomsPage = /** @class */ (function () {
     function ChatRoomsPage(router, nativeStorage) {
-        var _this = this;
         this.router = router;
         this.nativeStorage = nativeStorage;
         this.rooms = [];
-        this.ref = Firebase__WEBPACK_IMPORTED_MODULE_2__["database"]().ref('chatrooms/');
-        this.ref.on('value', function (resp) {
-            _this.rooms = [];
-            _this.rooms = snapshotToArray(resp);
-        });
+        this.ref = Firebase__WEBPACK_IMPORTED_MODULE_2__["firestore"]().collection('chatrooms');
     }
     ChatRoomsPage.prototype.ngOnInit = function () {
         var _this = this;
@@ -114,9 +109,33 @@ var ChatRoomsPage = /** @class */ (function () {
             _this.username = usercredentials.User.username;
             if (_this.username === undefined || _this.username.length == 0) {
                 _this.router.navigate(['register']);
+                // this.getChatroom()
             }
+            _this.getChatroom();
         }, function (error) {
+            // this.getChatroom()
             _this.router.navigateByUrl('/register');
+        });
+    };
+    ChatRoomsPage.prototype.getChatroom = function () {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var _this = this;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                this.ref.onSnapshot(function (docSnapshot) {
+                    var data = [];
+                    if (docSnapshot.empty) {
+                        data = [];
+                    }
+                    else {
+                        docSnapshot.forEach(function (doc) {
+                            data.push(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"]({ key: doc.id }, doc.data()));
+                        });
+                    }
+                    _this.rooms = data;
+                    // this.rooms = snapshotToArray(resp);
+                });
+                return [2 /*return*/];
+            });
         });
     };
     ChatRoomsPage.prototype.joinRoom = function (key, roomname) {

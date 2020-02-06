@@ -83,7 +83,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "snapshotToArray", function() { return snapshotToArray; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
-/* harmony import */ var Firebase__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! Firebase */ "./node_modules/Firebase/index.js");
+/* harmony import */ var Firebase__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! Firebase */ "./node_modules/Firebase/dist/index.cjs.js");
 /* harmony import */ var Firebase__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(Firebase__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
 /* harmony import */ var _ionic_native_native_storage_ngx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ionic-native/native-storage/ngx */ "./node_modules/@ionic-native/native-storage/ngx/index.js");
@@ -97,21 +97,37 @@ let ChatRoomsPage = class ChatRoomsPage {
         this.router = router;
         this.nativeStorage = nativeStorage;
         this.rooms = [];
-        this.ref = Firebase__WEBPACK_IMPORTED_MODULE_2__["database"]().ref('chatrooms/');
-        this.ref.on('value', resp => {
-            this.rooms = [];
-            this.rooms = snapshotToArray(resp);
-        });
+        this.ref = Firebase__WEBPACK_IMPORTED_MODULE_2__["firestore"]().collection('chatrooms');
     }
     ngOnInit() {
         // Get user credentials if user has already login
         this.nativeStorage.getItem('usercredentials').then(usercredentials => {
             this.username = usercredentials.User.username;
             if (this.username === undefined || this.username.length == 0) {
-                this.router.navigate(['register']);
+                // this.router.navigate(['register']);
+                this.getChatroom();
             }
+            this.getChatroom();
         }, error => {
-            this.router.navigateByUrl('/register');
+            this.getChatroom();
+            // this.router.navigateByUrl('/register');
+        });
+    }
+    getChatroom() {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
+            this.ref.onSnapshot(docSnapshot => {
+                let data = [];
+                if (docSnapshot.empty) {
+                    data = [];
+                }
+                else {
+                    docSnapshot.forEach(doc => {
+                        data.push(Object.assign({ key: doc.id }, doc.data()));
+                    });
+                }
+                this.rooms = data;
+                // this.rooms = snapshotToArray(resp);
+            });
         });
     }
     joinRoom(key, roomname) {

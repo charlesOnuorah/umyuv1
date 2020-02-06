@@ -3,6 +3,7 @@ import { IonContent } from '@ionic/angular';
 import * as firebase from 'Firebase';
 import { Router } from '@angular/router';
 import { NativeStorage } from '@ionic-native/native-storage/ngx';
+import { on } from 'cluster';
 
 
 @Component({
@@ -36,25 +37,62 @@ export class ChatRoomPage implements OnInit {
  
         this.data.type = 'message';
         this.data.username = this.username;
-      
-        let joinData = firebase.database().ref('chatrooms/'+this.roomkey+'/chats').push();
-        joinData.set({
+        firebase.firestore().collection('chatrooms/'+this.roomkey+'/chats').add({
           type:'join',
           user:this.data.username,
           message:this.data.username+' has joined this room.',
           sendDate:Date()
-        });
+        })
+        // let joinData = firebase.database().ref('chatrooms/'+this.roomkey+'/chats').push();
+        // joinData.set({
+        //   type:'join',
+        //   user:this.data.username,
+        //   message:this.data.username+' has joined this room.',
+        //   sendDate:Date()
+        // });
         this.data.message = '';
-      
-        firebase.database().ref('chatrooms/'+this.roomkey+'/chats').on('value', resp => {
-          this.chats = [];
-          this.chats = snapshotToArray(resp);
-          setTimeout(() => {
-            if(this.offStatus === false) {
-              this.content.scrollToBottom(300);
+        firebase.firestore().collection('chatrooms/'+this.roomkey+'/chats').onSnapshot(docSnapshot => {
+            let chat = []
+            
+            if(docSnapshot.empty){
+              return;
             }
-          }, 1000);
-        });
+            docSnapshot.forEach(doc => {
+              if(doc.data().message.trim() !== ''){
+                chat.push({
+                  key: doc.id,
+                  ...doc.data()
+                })
+              }
+            })
+            console.log('chat before', chat)
+            chat.sort((chat1:any, chat2:any) => {
+              if(new Date(chat1.sendDate) > new Date(chat2.sendDate)){
+                return 1
+              }
+              else if(new Date(chat1.sendDate) < new Date(chat2.sendDate)){
+                return -1
+              }else {
+                return 0
+              }
+            })
+            console.log('chat', chat)
+            this.chats = chat;
+            setTimeout(() => {
+              if(this.offStatus === false) {
+                this.content.scrollToBottom(300);
+              }
+            }, 500);
+        })
+        // firebase.database().ref('chatrooms/'+this.roomkey+'/chats').on('value', resp => {
+        //   this.chats = [];
+        //   this.chats = snapshotToArray(resp);
+        //   setTimeout(() => {
+        //     if(this.offStatus === false) {
+        //       this.content.scrollToBottom(300);
+        //     }
+        //   }, 1000);
+        // });
       },
       error => {
         this.router.navigateByUrl('/chatrooms');
@@ -66,35 +104,46 @@ export class ChatRoomPage implements OnInit {
   }
 
   userTyping(event: any) {
-    this.userInput = event.target.value;
+    // this.userInput = event.target.value;
 
-    if (this.userInput.length !== 0) {
-      this.isEnabled = true;
-    }
-    else
-    {
-      this.isEnabled = false;
-    }    
+    // if (this.userInput.length !== 0) {
+    //   this.isEnabled = true;
+    // }
+    // else
+    // {
+    //   this.isEnabled = false;
+    // }    
     
-    this.scrollDown();
-    setTimeout(() => {
-      this.senderSends();
-    }, 500);
+    // this.scrollDown();
+    // setTimeout(() => {
+    //   this.senderSends();
+    // }, 500);
   }
 
   sendMessage() {
-    let newData = firebase.database().ref('chatrooms/'+this.roomkey+'/chats').push();
-    newData.set({
-      type:this.data.type,
-      user:this.data.username,
-      message:this.data.message,
-      sendDate:Date()
-    });
-    this.data.message = '';
-    this.scrollDown();
-    setTimeout(() => {
-      this.senderSends();
-    }, 500);
+    if(this.data.message.trim() !== ''){
+      firebase.firestore().collection('chatrooms/'+this.roomkey+'/chats').add({
+        type:'message',
+        user:this.data.username,
+        message:this.data.message,
+        sendDate:Date()
+      }).then(() => {
+        this.data.message = '';
+        this.scrollDown();
+        // setTimeout(() => {
+        //   this.senderSends();
+        // }, 500);
+      })
+    }
+    
+    // let newData = firebase.database().ref('chatrooms/'+this.roomkey+'/chats').push();
+    // newData.set({
+    //   type:this.data.type,
+    //   user:this.data.username,
+    //   message:this.data.message,
+    //   sendDate:Date()
+    // });
+    
   }
   
   senderSends() {

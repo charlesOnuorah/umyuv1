@@ -3,11 +3,12 @@ import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastController, AlertController, LoadingController, Platform } from '@ionic/angular';
 import { NativeStorage } from '@ionic-native/native-storage/ngx';
-import * as firebase from 'Firebase';
 import { from } from 'rxjs';
 import { finalize } from 'rxjs/operators';
+import * as firebase from "firebase";
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { HTTP } from '@ionic-native/http/ngx';
+import { db } from "../../database";
 
 @Component({
   selector: 'app-register',
@@ -188,13 +189,20 @@ export class RegisterPage implements OnInit {
   //   });    
   // }
 
-  saveUserToFirebase() {
-    let newData = firebase.database().ref('users').push();
-    newData.set({
+  async saveUserToFirebase() {
+    const db = firebase.firestore()
+  
+    db.collection('users').add({
       username:this.user.username,
       password:this.user.password,
       created:Date()
-    });
+    })
+    // let newData = firebase.database().ref('users').push();
+    // newData.set({
+    //   username:this.user.username,
+    //   password:this.user.password,
+    //   created:Date()
+    // });
     
     this.nativeStorage.setItem('credentials', {User: this.user}).then(
       () => {},
