@@ -119,3 +119,6 @@ umyuv7.apk
 my-release-key.jks 
 zipalign
 #umyuappsource
+
+umyuv8.apk
+app-release-unsigned.apk
