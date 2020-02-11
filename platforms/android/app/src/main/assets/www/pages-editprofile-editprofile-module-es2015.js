@@ -115,6 +115,12 @@ let EditprofilePage = class EditprofilePage {
                 User.username.split(' ')[1] : '' : '';
             this.user.email = User.email;
             this.user.phoneNumber = User.phoneNumber;
+            this.profileForm.setValue({
+                firstName: this.user.firstName,
+                lastName: this.user.firstName,
+                email: this.user.email,
+                phoneNumber: this.user.phoneNumber
+            });
         });
         // const s = JSON.parse(localStorage.getItem('user'));
         // console.log('s', s, this.user)

@@ -97,11 +97,7 @@ let ChatRoomsPage = class ChatRoomsPage {
         this.router = router;
         this.nativeStorage = nativeStorage;
         this.rooms = [];
-        this.ref = Firebase__WEBPACK_IMPORTED_MODULE_2__["database"]().ref('chatrooms/');
-        this.ref.on('value', resp => {
-            this.rooms = [];
-            this.rooms = snapshotToArray(resp);
-        });
+        this.ref = Firebase__WEBPACK_IMPORTED_MODULE_2__["firestore"]().collection('chatrooms');
     }
     ngOnInit() {
         // Get user credentials if user has already login
@@ -109,9 +105,29 @@ let ChatRoomsPage = class ChatRoomsPage {
             this.username = usercredentials.User.username;
             if (this.username === undefined || this.username.length == 0) {
                 this.router.navigate(['register']);
+                // this.getChatroom()
             }
+            this.getChatroom();
         }, error => {
+            // this.getChatroom()
             this.router.navigateByUrl('/register');
+        });
+    }
+    getChatroom() {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
+            this.ref.onSnapshot(docSnapshot => {
+                let data = [];
+                if (docSnapshot.empty) {
+                    data = [];
+                }
+                else {
+                    docSnapshot.forEach(doc => {
+                        data.push(Object.assign({ key: doc.id }, doc.data()));
+                    });
+                }
+                this.rooms = data;
+                // this.rooms = snapshotToArray(resp);
+            });
         });
     }
     joinRoom(key, roomname) {

@@ -1,0 +1,80 @@
+<ion-row *ngIf="chat.user === username">
+        <!-- <span style="margin-left:295px;" [ngClass]="(chats[i+1] && chats[i+1].user == chat.user)?'hidden':''">
+          <ion-text color="medium">{{chat.user}}</ion-text>
+        </span> -->
+        <ion-col class="right" class="ion-no-padding" [ngClass]="{'clubbed':((chats[i+1] && chats[i+1].user != chat.user) || !chats[i+1])}">
+          <div class="imageAvatarRight">
+            <div class="imageAvatarBottom">
+              <ion-avatar class="avatar" [ngClass]="(chats[i+1] && chats[i+1].user == chat.user)?'hidden':''">
+              <!-- <ion-avatar class="avatar" [ngClass]="(chats[i+1] && chats[i+1].user == chat.user)?'':''"> -->
+                <div class="imageAvatarBottomIcon">
+                  <ion-icon name="add" expand="icon-only" color="light"> </ion-icon>
+                </div>
+                <ion-img src="assets/imgs/chat-me.png"></ion-img>
+              </ion-avatar>
+            </div>            
+            <ion-label color="light">                            
+              <div class="chatDiv" [ngClass]="{'sharper':((chats[i+1] && chats[i+1].user == chat.user) && 
+              (chats[i-1] && chats[i-1].user == chat.user)),
+              'sharper-top':(chats[i-1] && chats[i-1].user == chat.user),
+              'sharper-bottom':(chats[i+1] && chats[i+1].user == chat.user)}">
+                <p style="color:rgb(29, 27, 27); padding-right: 20px; width: 300px" class="ion-padding ion-text-wrap">
+                  {{chat.message}}
+                </p>
+                <!-- <span style="float: right; margin-top: -16px; padding-right: 10px;" [ngClass]="(chats[i+1] && chats[i+1].user == chat.user)?'hidden':''">
+                  <ion-text color="medium">{{(chats[i+1] && chats[i+1].user == chat.user) ? chat.user : ''}} {{chat.sendDate | date:'shortTime'}}</ion-text>
+                </span> -->
+                <span style="float: right; margin-top: -16px; padding-right: 10px;">
+                  <ion-text color="medium">{{(chats[i+1] && chats[i+1].user == chat.user) ? '' : chat.user}} {{chat.sendDate | date:'shortTime'}}</ion-text>
+                </span>
+                <div class="corner-parent-right">
+                  <div class="corner-child-right">
+
+                  </div>
+                </div>
+              </div>                
+            </ion-label>
+          </div>
+        </ion-col>
+      </ion-row>
+
+      <ion-row *ngIf="chat.user !== username">
+            <!-- <span [ngClass]="(chats[i+1] && chats[i+1].user == chat.user)?'':'hidden'">
+              <ion-text color="medium">{{chat.user}}</ion-text>
+            </span> -->
+            <ion-col class="left" class="ion-no-padding" [ngClass]="{'clubbed':((chats[i+1] && chats[i+1].user != chat.user) || !chats[i+1])}">
+              <div class="imageAvatarLeft">
+                <ion-label color="light">
+                  <div class="chatDiv" [ngClass]="{'sharper':((chats[i+1] && chats[i+1].user == chat.user) && 
+                  (chats[i-1] && chats[i-1].user == chat.user)),
+                  'sharper-top':(chats[i-1] && chats[i-1].user == chat.user),
+                  'sharper-bottom':(chats[i+1] && chats[i+1].user == chat.user)}">
+                    <p style="color:rgb(29, 27, 27); padding-right: 20px; width: 300px" class="ion-padding ion-text-wrap">
+                      {{chat.message}}
+                    </p>
+                    <!-- <span style="float: right; margin-top: -16px; padding-right: 10px;" [ngClass]="(chats[i+1] && chats[i+1].user == chat.user)?'hidden':''">
+                      <ion-text color="medium">{{(chats[i+1] && chats[i+1].user == chat.user) ? chat.user : ''}} {{chat.sendDate | date:'shortTime'}}</ion-text>
+                    </span> -->
+                    <span style="float: right; margin-top: -16px; padding-right: 10px;">
+                      <ion-text color="medium">{{(chats[i+1] && chats[i+1].user == chat.user) ? '' : chat.user}} {{chat.sendDate | date:'shortTime'}}</ion-text>
+                    </span>
+                    <div class="corner-parent-left">
+                      <div class="corner-child-left">
+    
+                      </div>
+                    </div>
+                  </div>
+                </ion-label>
+                <div class="imageAvatarBottom">
+                  <!-- <ion-icon class="imageAvatarBottomIcon" name="add" expand="icon-only" color="success"></ion-icon> -->
+                  <ion-avatar class="avatar" [ngClass]="(chats[i+1] && chats[i+1].user == chat.user)?'hidden':''">
+                  <!-- <ion-avatar class="avatar" [ngClass]="(chats[i+1] && chats[i+1].user == chat.user)?'':''"> -->
+                    <div class="imageAvatarBottomIcon">
+                      <ion-icon name="add" expand="icon-only" color="light"> </ion-icon>
+                    </div>
+                    <ion-img src="assets/imgs/chat-you.png"></ion-img>
+                  </ion-avatar>
+                </div>
+              </div>
+            </ion-col>
+          </ion-row>

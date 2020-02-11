@@ -90,10 +90,12 @@ var map = {
 	],
 	"./ion-backdrop-ios.entry.js": [
 		"./node_modules/@ionic/core/dist/esm-es5/ion-backdrop-ios.entry.js",
+		"common",
 		13
 	],
 	"./ion-backdrop-md.entry.js": [
 		"./node_modules/@ionic/core/dist/esm-es5/ion-backdrop-md.entry.js",
+		"common",
 		14
 	],
 	"./ion-button_2-ios.entry.js": [
@@ -345,10 +347,12 @@ var map = {
 	],
 	"./ion-slide_2-ios.entry.js": [
 		"./node_modules/@ionic/core/dist/esm-es5/ion-slide_2-ios.entry.js",
+		"common",
 		64
 	],
 	"./ion-slide_2-md.entry.js": [
 		"./node_modules/@ionic/core/dist/esm-es5/ion-slide_2-md.entry.js",
+		"common",
 		65
 	],
 	"./ion-spinner.entry.js": [
@@ -474,7 +478,7 @@ var routes = [
     { path: 'login', loadChildren: function () { return __webpack_require__.e(/*! import() | pages-login-login-module */ "pages-login-login-module").then(__webpack_require__.bind(null, /*! ./pages/login/login.module */ "./src/app/pages/login/login.module.ts")).then(function (m) { return m.LoginPageModule; }); } },
     { path: 'slider', loadChildren: function () { return __webpack_require__.e(/*! import() | pages-slider-slider-module */ "pages-slider-slider-module").then(__webpack_require__.bind(null, /*! ./pages/slider/slider.module */ "./src/app/pages/slider/slider.module.ts")).then(function (m) { return m.SliderPageModule; }); } },
     { path: 'home', loadChildren: function () { return __webpack_require__.e(/*! import() | pages-home-home-module */ "pages-home-home-module").then(__webpack_require__.bind(null, /*! ./pages/home/home.module */ "./src/app/pages/home/home.module.ts")).then(function (m) { return m.HomePageModule; }); } },
-    { path: 'register', loadChildren: function () { return Promise.all(/*! import() | pages-register-register-module */[__webpack_require__.e("common"), __webpack_require__.e("pages-register-register-module")]).then(__webpack_require__.bind(null, /*! ./pages/register/register.module */ "./src/app/pages/register/register.module.ts")).then(function (m) { return m.RegisterPageModule; }); } },
+    { path: 'register', loadChildren: function () { return __webpack_require__.e(/*! import() | pages-register-register-module */ "pages-register-register-module").then(__webpack_require__.bind(null, /*! ./pages/register/register.module */ "./src/app/pages/register/register.module.ts")).then(function (m) { return m.RegisterPageModule; }); } },
     { path: 'faculties', loadChildren: function () { return __webpack_require__.e(/*! import() | pages-faculty-faculty-module */ "pages-faculty-faculty-module").then(__webpack_require__.bind(null, /*! ./pages/faculty/faculty.module */ "./src/app/pages/faculty/faculty.module.ts")).then(function (m) { return m.FacultyPageModule; }); } },
     { path: 'departments/:id', loadChildren: function () { return __webpack_require__.e(/*! import() | pages-department-department-module */ "pages-department-department-module").then(__webpack_require__.bind(null, /*! ./pages/department/department.module */ "./src/app/pages/department/department.module.ts")).then(function (m) { return m.DepartmentPageModule; }); } },
     { path: 'levels/:id', loadChildren: function () { return __webpack_require__.e(/*! import() | pages-level-level-module */ "pages-level-level-module").then(__webpack_require__.bind(null, /*! ./pages/level/level.module */ "./src/app/pages/level/level.module.ts")).then(function (m) { return m.LevelPageModule; }); } },
@@ -559,15 +563,25 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var config = {
-    apiKey: "AIzaSyCGavxScn2bJ_rSURja2qr4qLjk25E0Dfc",
-    authDomain: "umyuchatid.firebaseapp.com",
-    databaseURL: "https://umyuchatid.firebaseio.com",
-    projectId: "umyuchatid",
-    storageBucket: "umyuchatid.appspot.com",
-    messagingSenderId: "91049745332",
-    appId: "1:91049745332:web:961ef25a661f9b56d0f0e1",
-    measurementId: "G-T64YNVKLDS",
+    apiKey: "AIzaSyAXujgxlIAWpDSpjR-txtUoUWX-XLubHuM",
+    authDomain: "umyu-4a1d9.firebaseapp.com",
+    databaseURL: "https://umyu-4a1d9.firebaseio.com",
+    projectId: "umyu-4a1d9",
+    storageBucket: "umyu-4a1d9.appspot.com",
+    messagingSenderId: "77612250104",
+    appId: "1:77612250104:web:23b959a426edf3cb47dc0d",
+    measurementId: "G-GCZ3TYBDEP"
 };
+// const config = {
+//   apiKey: "AIzaSyCGavxScn2bJ_rSURja2qr4qLjk25E0Dfc",
+//   authDomain: "umyuchatid.firebaseapp.com",
+//   databaseURL: "https://umyuchatid.firebaseio.com",
+//   projectId: "umyuchatid",
+//   storageBucket: "umyuchatid.appspot.com",
+//   messagingSenderId: "91049745332",
+//   appId: "1:91049745332:web:961ef25a661f9b56d0f0e1",
+//   measurementId: "G-T64YNVKLDS",
+// };
 var AppComponent = /** @class */ (function () {
     function AppComponent(platform, splashScreen, statusBar, diagnostic, screenOrientation, file, router, nativeStorage, alertController) {
         this.platform = platform;
@@ -609,12 +623,14 @@ var AppComponent = /** @class */ (function () {
             _this.statusBar.styleDefault();
             _this.splashScreen.hide();
             // check permission
-            // this.getPermission();
+            _this.getPermission();
             _this.checkAuthentication();
             // set to portrait
-            // this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
+            _this.screenOrientation.lock(_this.screenOrientation.ORIENTATIONS.PORTRAIT);
         });
-        firebase__WEBPACK_IMPORTED_MODULE_9__["initializeApp"](config);
+        if (!firebase__WEBPACK_IMPORTED_MODULE_9__["apps"].length) {
+            firebase__WEBPACK_IMPORTED_MODULE_9__["initializeApp"](config);
+        }
     };
     AppComponent.prototype.getPermission = function () {
         var _this = this;
@@ -730,13 +746,13 @@ var AppComponent = /** @class */ (function () {
         // Get user credentials if user has already login
         this.nativeStorage.getItem('usercredentials').then(function (usercredentials) {
             if (usercredentials.User.username === undefined || usercredentials.User.username.length == 0) {
-                _this.router.navigateByUrl('/home');
+                _this.router.navigateByUrl('/register');
             }
             else {
                 _this.router.navigate(['slider']);
             }
         }, function (error) {
-            _this.router.navigateByUrl('/home');
+            _this.router.navigateByUrl('/register');
         });
     };
     AppComponent.prototype.presentAlert = function (header, message) {
@@ -2103,7 +2119,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/cbcgedu/Desktop/umyu/src/main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! /Users/cbcgedu/Desktop/projects/umyuv1/src/main.ts */"./src/main.ts");
 
 
 /***/ }),

@@ -56,88 +56,36 @@
   </ion-grid>
 </ion-footer> -->
 
-<ion-content #IonContent fullscreen="false" style="background: url(assets/imgs/chat-back.png) no-repeat center center fixed;">
+<ion-content #IonContent fullscreen="false" class="ion-no-padding no-padding" style="background: url(assets/imgs/chat-back.png) fixed;">
   <ion-list>
     <div *ngFor="let chat of chats; let i = index;">
-      <ion-row *ngIf="chat.user === username">
-        <!-- <span style="margin-left:295px;" [ngClass]="(chats[i+1] && chats[i+1].user == chat.user)?'hidden':''">
-          <ion-text color="medium">{{chat.user}}</ion-text>
-        </span> -->
-        <ion-col class="right" class="ion-no-padding" [ngClass]="{'clubbed':((chats[i+1] && chats[i+1].user != chat.user) || !chats[i+1])}">
-          <div class="imageAvatarRight">
-            <div class="imageAvatarBottom">
-              <ion-avatar class="avatar" [ngClass]="(chats[i+1] && chats[i+1].user == chat.user)?'hidden':''">
-              <!-- <ion-avatar class="avatar" [ngClass]="(chats[i+1] && chats[i+1].user == chat.user)?'':''"> -->
-                <div class="imageAvatarBottomIcon">
-                  <ion-icon name="add" expand="icon-only" color="light"> </ion-icon>
-                </div>
-                <ion-img src="assets/imgs/chat-me.png"></ion-img>
-              </ion-avatar>
-            </div>            
-            <ion-label color="light">                            
-              <div class="chatDiv" [ngClass]="{'sharper':((chats[i+1] && chats[i+1].user == chat.user) && 
-              (chats[i-1] && chats[i-1].user == chat.user)),
-              'sharper-top':(chats[i-1] && chats[i-1].user == chat.user),
-              'sharper-bottom':(chats[i+1] && chats[i+1].user == chat.user)}">
-                <p style="color:rgb(29, 27, 27); padding-right: 20px; width: 300px" class="ion-padding ion-text-wrap">
-                  {{chat.message}}
-                </p>
-                <!-- <span style="float: right; margin-top: -16px; padding-right: 10px;" [ngClass]="(chats[i+1] && chats[i+1].user == chat.user)?'hidden':''">
-                  <ion-text color="medium">{{(chats[i+1] && chats[i+1].user == chat.user) ? chat.user : ''}} {{chat.sendDate | date:'shortTime'}}</ion-text>
-                </span> -->
-                <span style="float: right; margin-top: -16px; padding-right: 10px;">
-                  <ion-text color="medium">{{(chats[i+1] && chats[i+1].user == chat.user) ? '' : chat.user}} {{chat.sendDate | date:'shortTime'}}</ion-text>
-                </span>
-                <div class="corner-parent-right">
-                  <div class="corner-child-right">
-
-                  </div>
-                </div>
-              </div>                
-            </ion-label>
-          </div>
-        </ion-col>
+      
+      <ion-row *ngIf="chat.type === 'join' && chat.user === username">
+        <p class="notification">
+          <span class="notification-text">You joined <span class="time">{{chat.sendDate | date:'shortTime'}}</span></span>
+        </p>
       </ion-row>
-      <ion-row *ngIf="chat.user !== username">
-        <!-- <span [ngClass]="(chats[i+1] && chats[i+1].user == chat.user)?'':'hidden'">
-          <ion-text color="medium">{{chat.user}}</ion-text>
-        </span> -->
-        <ion-col class="left" class="ion-no-padding" [ngClass]="{'clubbed':((chats[i+1] && chats[i+1].user != chat.user) || !chats[i+1])}">
-          <div class="imageAvatarLeft">
-            <ion-label color="light">
-              <div class="chatDiv" [ngClass]="{'sharper':((chats[i+1] && chats[i+1].user == chat.user) && 
-              (chats[i-1] && chats[i-1].user == chat.user)),
-              'sharper-top':(chats[i-1] && chats[i-1].user == chat.user),
-              'sharper-bottom':(chats[i+1] && chats[i+1].user == chat.user)}">
-                <p style="color:rgb(29, 27, 27); padding-right: 20px; width: 300px" class="ion-padding ion-text-wrap">
-                  {{chat.message}}
-                </p>
-                <!-- <span style="float: right; margin-top: -16px; padding-right: 10px;" [ngClass]="(chats[i+1] && chats[i+1].user == chat.user)?'hidden':''">
-                  <ion-text color="medium">{{(chats[i+1] && chats[i+1].user == chat.user) ? chat.user : ''}} {{chat.sendDate | date:'shortTime'}}</ion-text>
-                </span> -->
-                <span style="float: right; margin-top: -16px; padding-right: 10px;">
-                  <ion-text color="medium">{{(chats[i+1] && chats[i+1].user == chat.user) ? '' : chat.user}} {{chat.sendDate | date:'shortTime'}}</ion-text>
-                </span>
-                <div class="corner-parent-left">
-                  <div class="corner-child-left">
+      <ion-row *ngIf="chat.type === 'join' && chat.user !== username">
+          <p class="notification">
+            <span class="notification-text">{{chat.user}} has joined <span class="time">{{chat.sendDate | date:'shortTime'}}</span></span>
+          </p>
+        </ion-row>
+      <ion-row *ngIf="chat.type === 'exit' && chat.user !== username">
+          <p class="notification">
+            <span class="notification-text">
+              {{chat.user}} has left <span class="time">{{chat.sendDate | date:'shortTime'}}
 
-                  </div>
-                </div>
-              </div>
-            </ion-label>
-            <div class="imageAvatarBottom">
-              <!-- <ion-icon class="imageAvatarBottomIcon" name="add" expand="icon-only" color="success"></ion-icon> -->
-              <ion-avatar class="avatar" [ngClass]="(chats[i+1] && chats[i+1].user == chat.user)?'hidden':''">
-              <!-- <ion-avatar class="avatar" [ngClass]="(chats[i+1] && chats[i+1].user == chat.user)?'':''"> -->
-                <div class="imageAvatarBottomIcon">
-                  <ion-icon name="add" expand="icon-only" color="light"> </ion-icon>
-                </div>
-                <ion-img src="assets/imgs/chat-you.png"></ion-img>
-              </ion-avatar>
-            </div>
-          </div>
-        </ion-col>
-      </ion-row>
+              </span></span>
+          </p>
+        </ion-row>
+        <ion-row [ngClass]="chat.user === username ? 'display display-right':'display display-left'" *ngIf="chat.type === 'message'">
+            <span [ngClass]="chat.user === username ? 'innermsg right':'innermsg left'">
+              <span *ngIf="chat.user !== username" class="chat-user">{{chat.user}}</span>
+              {{ chat.message }}
+              <span class="time">{{chat.sendDate | date:'shortTime'}}</span>
+            </span>
+        </ion-row>
+      
       <ion-row *ngIf="((chats[i+1] && chats[i+1].user != chat.user) || !chats[i+1])">
       <!-- <ion-row> -->
         <ion-col>
@@ -147,11 +95,11 @@
     </div>
   </ion-list>
 
-  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+  <!-- <ion-fab vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button (click)=" sendMessage()" [disabled]="isEnabled === false">
       <ion-icon name="send" expand="icon-only"></ion-icon>
     </ion-fab-button>
-  </ion-fab>
+  </ion-fab> -->
 
   <ion-row *ngIf="loader">
     <ion-col class="loading-col ion-no-padding">
@@ -183,8 +131,8 @@
 
 <ion-footer color="light">
   <ion-item color="light">
-    <ion-icon slot="start" name="chatboxes" expand="icon-only" class="footerIcon"></ion-icon>
+    <!-- <ion-icon slot="start" name="chatboxes" expand="icon-only" class="footerIcon"></ion-icon> -->
     <ion-input color="light" style="color:rgb(33, 34, 36) !important;" class="input-box" type="text" name="message" placeholder="Write a message..." [(ngModel)]="data.message" (ionInput)="userTyping($event)" (keyup.enter)="sendMessage()"></ion-input>
-    <!-- <ion-icon name="paper-plane" (click)="sendMessage()"></ion-icon> -->
+    <ion-icon slot="end" name="paper-plane" (click)="sendMessage()"></ion-icon>
   </ion-item>
 </ion-footer>

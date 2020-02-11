@@ -105,7 +105,8 @@ export class CoursePage implements OnInit {
 
     let _httpHeaders = new HttpHeaders()
      .set('Content-Type', 'application/json')
-     .set('Cache-Control', 'no-cache');
+     .set('Cache-Control', 'no-cache')
+     .set('Access-Control-Allow-Credentials', 'true');
 
     let httpHeaders = {
       headers: _httpHeaders

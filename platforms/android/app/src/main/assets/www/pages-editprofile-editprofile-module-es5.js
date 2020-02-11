@@ -119,6 +119,12 @@ var EditprofilePage = /** @class */ (function () {
                 User.username.split(' ')[1] : '' : '';
             _this.user.email = User.email;
             _this.user.phoneNumber = User.phoneNumber;
+            _this.profileForm.setValue({
+                firstName: _this.user.firstName,
+                lastName: _this.user.firstName,
+                email: _this.user.email,
+                phoneNumber: _this.user.phoneNumber
+            });
         });
         // const s = JSON.parse(localStorage.getItem('user'));
         // console.log('s', s, this.user)

@@ -10,16 +10,29 @@ import * as firebase from 'firebase';
 import { NativeStorage } from '@ionic-native/native-storage/ngx';
 import { Router } from '@angular/router';
 
+
 const config = {
-  apiKey: "AIzaSyCGavxScn2bJ_rSURja2qr4qLjk25E0Dfc",
-  authDomain: "umyuchatid.firebaseapp.com",
-  databaseURL: "https://umyuchatid.firebaseio.com",
-  projectId: "umyuchatid",
-  storageBucket: "umyuchatid.appspot.com",
-  messagingSenderId: "91049745332",
-  appId: "1:91049745332:web:961ef25a661f9b56d0f0e1",
-  measurementId: "G-T64YNVKLDS",
+  apiKey: "AIzaSyAXujgxlIAWpDSpjR-txtUoUWX-XLubHuM",
+  authDomain: "umyu-4a1d9.firebaseapp.com",
+  databaseURL: "https://umyu-4a1d9.firebaseio.com",
+  projectId: "umyu-4a1d9",
+  storageBucket: "umyu-4a1d9.appspot.com",
+  messagingSenderId: "77612250104",
+  appId: "1:77612250104:web:23b959a426edf3cb47dc0d",
+  measurementId: "G-GCZ3TYBDEP"
 };
+
+// const config = {
+//   apiKey: "AIzaSyCGavxScn2bJ_rSURja2qr4qLjk25E0Dfc",
+//   authDomain: "umyuchatid.firebaseapp.com",
+//   databaseURL: "https://umyuchatid.firebaseio.com",
+//   projectId: "umyuchatid",
+//   storageBucket: "umyuchatid.appspot.com",
+//   messagingSenderId: "91049745332",
+//   appId: "1:91049745332:web:961ef25a661f9b56d0f0e1",
+//   measurementId: "G-T64YNVKLDS",
+// };
+
 
 @Component({
   selector: 'app-root',
@@ -72,12 +85,14 @@ export class AppComponent {
       this.splashScreen.hide();
       
       // check permission
-      // this.getPermission();
+      this.getPermission();
       this.checkAuthentication()
       // set to portrait
-      // this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
+      this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
     });
-    firebase.initializeApp(config);
+    if(!firebase.apps.length){
+      firebase.initializeApp(config)
+    }
   }
 
   getPermission() {
@@ -194,14 +209,14 @@ export class AppComponent {
     this.nativeStorage.getItem('usercredentials').then(
       usercredentials => {
         if (usercredentials.User.username === undefined || usercredentials.User.username.length == 0) {
-          this.router.navigateByUrl('/home');
+          this.router.navigateByUrl('/register');
         }
         else{
           this.router.navigate(['slider']);
         }
        },
       error => {
-        this.router.navigateByUrl('/home');
+        this.router.navigateByUrl('/register');
       }
     );
   }

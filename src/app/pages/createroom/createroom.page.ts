@@ -16,7 +16,8 @@ export class CreateRoomPage implements OnInit {
   courseTitle: string;
 
   rooms = [];
-  ref = firebase.database().ref('chatrooms/');
+  //ref = firebase.database().ref('chatrooms/');
+  ref = firebase.firestore().collection('chatrooms')
  
   /**
    * Constructor of our course viewer page
@@ -27,10 +28,24 @@ export class CreateRoomPage implements OnInit {
     private nativeStorage: NativeStorage, private router: Router,
     private toastCtrl: ToastController, private spinnerDialog: SpinnerDialog) {
 
-    this.ref.on('value', resp => {
-      this.rooms = [];
-      this.rooms = snapshotToArray(resp);      
-    });
+    // this.ref.on('value', resp => {
+    //   this.rooms = [];
+    //   this.rooms = snapshotToArray(resp);      
+    // });
+    this.ref.onSnapshot(docSnapshot => {
+      if(docSnapshot.empty){
+        this.rooms = []
+
+      }
+      const data = []
+      docSnapshot.forEach(doc => {
+        data.push({
+          key: doc.id,
+          ...doc.data()
+        })
+      })
+      this.rooms = data;
+    })
 
     this.nativeStorage.getItem('selectedcourse').then(
       selectedCourse => {
@@ -42,12 +57,12 @@ export class CreateRoomPage implements OnInit {
   }
 
   ngOnInit() {
-    // Get the ID that was passed with the URL    
+    // Get the ID that was passed with the URL
     this.activatedRoute.params.subscribe(
-      params => {          
+      params => {
         this.courseID = +params['courseid'];
       }
-    ); 
+    );
   }
 
   async createChatRoom() {
@@ -55,18 +70,20 @@ export class CreateRoomPage implements OnInit {
       message: 'Creatiing chat room, please wait...'
     });
     await loading.present();
-    
-    let newData = this.ref.push();
-    newData.set({
-      // roomname:this.data.roomname
+    // let newData = this.ref.push();
+    // newData.set({
+    //   // roomname:this.data.roomname
+    //   roomname: this.courseCode,
+    //   roomtitle: this.courseTitle
+    // });
+    this.ref.add({
       roomname: this.courseCode,
       roomtitle: this.courseTitle
-    });
+    })
     loading.dismiss();
-                        
     // Navigate and display chatroom
     this.router.navigate(['/chatrooms/']);
-  }  
+  }
 }
 
 export const snapshotToArray = snapshot => {
